@@ -25,7 +25,7 @@
   const defaultGasUrl = "https://script.google.com/macros/s/YOUR_DEFAULT_HOMEPAGE_GAS_ID/exec";
   
   // Look up the URL in your registry. If it doesn't exist, fall back to default.
-  const activeGasUrl = eventRegistry[eventSlug] || defaultGasUrl;
+  const WEB_APP_URL = eventRegistry[eventSlug] || defaultGasUrl;
 
   console.log("Routing completed! Active GAS target is:", activeGasUrl);
 (function() {
@@ -39,9 +39,6 @@
         let _successHandler = null;
         let _failureHandler = null;
         
-        // Ensure this is your LATEST /exec URL
-        const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwxmxKlaBK-vekcCwjtllrScdJdQN1LGO9YyssNN1GoAByezwRL3P7jaMO7Ro2PA07RrQ/exec";
-
         async function execute(functionName, args) {
   // Capture the current handlers so they don't get overwritten 
   // if another call starts before this one finishes.
