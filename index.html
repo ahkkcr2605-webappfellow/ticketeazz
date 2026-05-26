@@ -27,7 +27,7 @@
   // Look up the URL in your registry. If it doesn't exist, fall back to default.
   const WEB_APP_URL = eventRegistry[eventSlug] || defaultGasUrl;
 
-  console.log("Routing completed! Active GAS target is:", activeGasUrl);
+  console.log("Routing completed! Active GAS target is:", WEB_APP_URL);
 (function() {
   // 1. Don't double-mirror if we're actually in GAS
   if (typeof google !== 'undefined' && google.script && google.script.run && !google.script.run._isMirror) {
