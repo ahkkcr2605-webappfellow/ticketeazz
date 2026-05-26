@@ -4,6 +4,30 @@
 </head>
 <body>
 <script>
+ const currentPath = window.location.pathname; // Gets "/sunburn-2026"
+  const eventSlug = currentPath.replace('/', '').trim(); // Cleans it to "sunburn-2026"
+
+  // =========================================================================
+  // 2. THE MASTER REGISTRY: Your lookup list of active GAS Web App URLs
+  // =========================================================================
+  const eventRegistry = {
+    "rock-concert": "https://script.google.com/macros/s/GAS_DEPLOYMENT_ID_1/exec",
+    "theater-play": "https://script.google.com/macros/s/GAS_DEPLOYMENT_ID_2/exec",
+    
+    // Your new line goes here:
+    "sunburn-2026": "https://script.google.com/macros/s/AKfycby2JRiCVciNKCVv-fP5zs1EE658T-DV2vLMvjlQTELVl04GVVdKBOj6etG6FW57U6co/exec"
+  };
+
+  // =========================================================================
+  // 3. ASSIGNMENT: Match the slug to the correct GAS URL before proceeding
+  // =========================================================================
+  // We use a fallback URL just in case someone types a broken path or visits the plain homepage
+  const defaultGasUrl = "https://script.google.com/macros/s/YOUR_DEFAULT_HOMEPAGE_GAS_ID/exec";
+  
+  // Look up the URL in your registry. If it doesn't exist, fall back to default.
+  const activeGasUrl = eventRegistry[eventSlug] || defaultGasUrl;
+
+  console.log("Routing completed! Active GAS target is:", activeGasUrl);
 (function() {
   // 1. Don't double-mirror if we're actually in GAS
   if (typeof google !== 'undefined' && google.script && google.script.run && !google.script.run._isMirror) {
